@@ -30,6 +30,49 @@ tags:
 schemes:
   - "http"
 paths:
+  /pet/paginado:
+    get:
+      tags:
+        - "pet"
+      summary: "Lista Páginada de Pets"
+      description: "Lista geral de pets de forma páginada para ajudar no fluxo do back-end"
+      operationId: "listPaginatedPets"
+      produces:
+        - "application/json"
+      parameters:
+        - name: name
+          in: query
+          description: "filtrar por nome"
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: mostra a pagina requisitada durante a solicitacao
+          required: false
+          type: integer
+          format: int32
+        - name: per_page
+          in: query
+          description: 'quantidade de itens por página'
+          required: false
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Operação realizada com sucesso
+          headers:
+            X-Total-Elements:
+              type: integer
+              description: Total de OcorrenciasValores disponiveis para navegacao.
+            X-Total-Pages:
+              type: integer
+              description: Total de paginas disponiveis par navegacao.
+            Link:
+              type: string
+              description: Links para navegacao entre paginas.
+          schema:
+            $ref: '#/definitions/PetPaginado'
+
   /pet:
     post:
       tags:
@@ -227,8 +270,26 @@ paths:
         400:
           description: "Invalid pet value"
 
-
 definitions:
+  PetPaginado:
+    type: "object"
+    properties:
+      page:
+        type: integer
+        format: int64
+      perPage:
+        type: integer
+        format: int64
+      totalPages:
+        type: integer
+        format: int64
+      totalElements:
+        type: integer
+        format: int64
+      pets:
+        type: array
+        items:
+          $ref: '#/definitions/Pet'
   Pet:
     type: "object"
     required:

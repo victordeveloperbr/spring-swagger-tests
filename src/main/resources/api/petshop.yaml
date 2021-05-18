@@ -153,7 +153,6 @@ paths:
       description: "Returns a single pet"
       operationId: "getPetById"
       produces:
-        - "application/xml"
         - "application/json"
       parameters:
         - name: "petId"
@@ -234,7 +233,6 @@ definitions:
     type: "object"
     required:
       - "name"
-      - "photoUrls"
     properties:
       id:
         type: "integer"
@@ -251,8 +249,6 @@ definitions:
           - "available"
           - "pending"
           - "sold"
-    xml:
-      name: "Pet"
 externalDocs:
   description: "Find out more about Swagger"
   url: "http://swagger.io"

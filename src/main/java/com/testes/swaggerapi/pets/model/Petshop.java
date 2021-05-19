@@ -19,6 +19,11 @@ public class Petshop {
     public Petshop() {
     }
 
+    public Petshop(String name, Pet.StatusEnum status) {
+        this.name = name;
+        this.status = status;
+    }
+
     public Petshop(Long id, String name, Pet.StatusEnum status) {
         this.id = id;
         this.name = name;

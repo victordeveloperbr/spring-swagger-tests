@@ -45,16 +45,17 @@ paths:
           description: "filtrar por nome"
           required: false
           type: string
+          default: ""
         - name: page
           in: query
           description: mostra a pagina requisitada durante a solicitacao
-          required: false
+          required: true
           type: integer
           format: int32
         - name: per_page
           in: query
           description: 'quantidade de itens por página'
-          required: false
+          required: true
           type: integer
           format: int32
       responses:
